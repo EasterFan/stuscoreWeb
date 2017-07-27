@@ -5,8 +5,9 @@
     <title>学生成绩单</title>
     <link rel="stylesheet" href="../css/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../css/bootstrap-3.3.7-dist/css/index.css">
-    <script src="../js/bootstrap.js"></script>
-    <script src="../src/process.js"></script>
+    <script src="../css/jquery-3.1.1.min/jquery-3.1.1.min.js"></script>
+    <script src="../css/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
 
@@ -21,36 +22,30 @@
 </nav>
 
 
+
 <!--内容-->
 <div class="content">
 
-    <!--四个按钮-->
-    <div class = "buttonline">
+    <!--两个按钮-->
+    <div class="biaoqianye">
 
-        <div class="row">
-            <div class="col-md-3">
-                <button class="btn btn-default" type="submit">添加</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-default" type="submit">查询</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-default" type="submit">修改</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-default" type="submit">删除</button>
-            </div>
-        </div>
+        <ul id="twoTab" class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a href="#addStudentGrade" data-toggle="tab">添加成绩</a></li>
+            <li role="presentation">
+                <a href="#searchStudentsGrades" data-toggle="tab">查询成绩</a></li>
+        </ul>
 
     </div>
+    <!--添加学生成绩-->
+    <div id="myTabContent" class="tab-content" id="addStudentGrade">
+        <div class="tab-pane fade in active" >
+            <form>
+                <div class="form-group">
 
-    <!--成绩单-->
-    <div class="display">
-        <form>
-            <div class="form-group">
-
-                <!--基本信息-->
-                <div class="row">
+                <!--添加基本信息-->
+                    <div role="presentation" class="tab-pane active" >
+                    <div class="row">
                     <div class="col-xs-3">
                         <label for="exampleInput1">学号：</label>
                         <input type="text" name="sno" class="form-control" placeholder="学号">
@@ -60,13 +55,13 @@
                         <input type="text" name="name" class="form-control" placeholder="姓名">
                     </div>
                     <div class="col-xs-3">
-                        <label for="exampleInput3">班级：</label>
-                        <input type="text" name="klass" class="form-control" placeholder="班级">
+                        <label for="exampleInput3">民族：</label>
+                        <input type="text" name="nation" class="form-control" placeholder="班级">
                     </div>
                 </div>
 
 
-                <!--成绩信息-->
+                <!--添加成绩信息-->
                 <div class="row">
                     <div class="col-xs-3">
                         <label for="exampleInput1">语文：</label>
@@ -80,29 +75,73 @@
                         <label for="exampleInput3">英语：</label>
                         <input type="text" name="english" class="form-control">
                     </div>
+                    <div class="col-xs-3">
+                        <label for="exampleInput3">编程：</label>
+                        <input type="text" name="prom" class="form-control">
+                    </div>
+                </div>
+                </div>
+            </div>
+
+                <div class="col-sm-offset-10 col-sm-2">
+                    <button id="btn_enteringStudentGrade" type="submit" onclick="addStudentTolocalStorage()" class="btn btn-primary">录入成绩</button>
+                </div>
+        </form>
+        </div>
+
+                <!--查找学生信息-->
+
+                <div role="presentation" class="tab-pane" id="searchStudentsGrades">
+                    <form id="form_searchStudentsGrades" class="form-horizontal" style="padding: 20px" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">学号</span>
+                                    <input id="input_studentIds" type="text" name="studentIds" class="form-control" placeholder="请输入你的学号...(默认查询所有)">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-3 col-sm-4">
+                                <div class="input-group pull-right">
+                                    <button id="btn_searchStudentsGrades" type="submit" onclick="searchStudent()" class="btn btn-primary">查询</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table id="table_Grade" class="table table-hover table-bordered table-condensed table-striped">
+                        <h4 class="text-center">学生成绩列表</h4>
+                        <thead>
+                        <tr>
+                            <!--姓名|数学|语文|英语|编程|平均分|总分 -->
+                            <th>姓名</th>
+                            <th>数学</th>
+                            <th>语文</th>
+                            <th>英语</th>
+                            <th>编程</th>
+                            <th>总分</th>
+                            <th>平均分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
 
 
-                <!--总分平均分-->
-                <div class="row">
-                    <div class="col-xs-2">
-                        <label for="exampleInput1">平均分：</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-xs-2">
-                        <label for="exampleInput2">总分：</label>
-                        <input type="text" class="form-control">
-                    </div>
 
-                </div>
 
 
             </div>
 
-            <button type="submit" onclick="inputToLocalStoreage()" class="sbtn btn-default">Submit</button>
+
         </form>
 
     </div>
+
+
+</div>
 
 </div>
 
